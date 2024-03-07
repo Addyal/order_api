@@ -1,0 +1,54 @@
+<!-- templates/latest_orders.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .order-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .order-details {
+            margin-bottom: 10px;
+        }
+        .order-image {
+            width: 100px;
+            height: auto;
+        }
+        .contact-details {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Latest Orders</h1>
+
+    {% for order in latest_orders %}
+        <div class="order-container">
+            <div class="order-details">
+                <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+                <p><strong>Product:</strong> {{ order.product.name }} - Size: {{ order.product.size }} - Price: ${{ order.product.price }}</p>
+                <img class="order-image" src="{{ order.product.image.url }}" alt="{{ order.product.name }} Image">
+            </div>
+            <div class="contact-details">
+                <p><strong>Full Name:</strong> {{ order.name }}</p>
+                <p><strong>Email:</strong> {{ order.email }}</p>
+            </div>
+            <div class="delivery-address">
+                <p><strong>Delivery Address:</strong> {{ order.address1 }} {% if order.address2 %}- {{ order.address2 }}{% endif %} - {{ order.town_city }} - {{ order.postcode }}</p>
+            </div>
+            <div class="customer-info">
+                <p><strong>Total Orders by Customer:</strong> {{ order.customer.orders.count }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
