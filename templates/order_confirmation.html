@@ -3,7 +3,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Order Confirmation</h1>
-  <p>Thank you for your order!</p>
-  <p>Your order number is: {{ order.order_number }}</p>
+  <div class="order-confirmation">
+    <h1 class="confirmation-heading">Order Confirmed!</h1>
+    <p class="confirmation-text">Thank you for choosing our products. Your order has been successfully placed.</p>
+    
+    <div class="order-details">
+      <p class="order-number">Your Order Number:</p>
+      <p class="order-number-value">{{ order.order_number }}</p>
+    </div>
+    
+    <p class="confirmation-text">We're preparing your items for shipment. You'll receive an email with tracking information once your order is on its way.</p>
+  </div>
 {% endblock %}

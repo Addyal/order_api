@@ -25,7 +25,7 @@
                 <p>{{ order.town_city }} - {{ order.postcode }}</p>
             </div>
             <div class="customer-info">
-                <p><strong>Total Orders by Customer:</strong> {{ order.customer.orders.count }}</p>
+                <p><strong>Total Orders by Customer:</strong> {{ order.email.count }}</p>
             </div>
         </div>
     {% endfor %}
