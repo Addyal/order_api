@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .forms import OrderForm
-from .models import TShirt, Order
+from .models import TShirt, Order, Customer
 
 #Default index/homepage
 def index(request):
@@ -36,5 +36,8 @@ def order_confirmation(request, order_number):
 
 # Last 50 orders to be shown, this would be for the back office
 def latest_orders(request):
-    latest_orders = Order.objects.order_by('-id')[:50].select_related('product')  # Fetch the latest 50 orders with related TShirt
+    # Fetch the latest 50 orders with related TShirt
+    latest_orders = Order.objects.order_by('-id')[:50].select_related('product')  
+    # Access the object of the Customer model
+    #cust_fields = Customer
     return render(request, 'latest_orders.html', {'latest_orders': latest_orders})

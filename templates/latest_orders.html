@@ -25,8 +25,10 @@
                 <p>{{ order.town_city }} - {{ order.postcode }}</p>
             </div>
             <div class="customer-info">
-                <p><strong>Total Orders by Customer:</strong> {{ order.email.count }}</p>
-            </div>
+                {% with temp=order.email %}
+                    <p><strong>Total Orders by Customer:</strong> {{Customer.objects.filter(**{'email': temp})}}</p>
+                {% endwith %}
+            </div>            
         </div>
     {% endfor %}
 {% endblock %}
