@@ -6,6 +6,7 @@ import uuid
 class TShirt(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="tshirts", blank=True, null=True)
+    colour = models.CharField(max_length=10, blank='See Image')
     size = models.CharField(max_length=10)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 

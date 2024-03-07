@@ -8,8 +8,9 @@
   <div class="tshirt-card">
     <img class="tshirt-image" src="{{ tshirt.image.url }}" alt="{{ tshirt.name }} Image">
     <h2 class="tshirt-name">{{ tshirt.name }}</h2>
+    <p class="tshirt-details"><strong>Colour:</strong> {{ tshirt.colour }}</p>
     <p class="tshirt-details"><strong>Size:</strong> {{ tshirt.size }}</p>
-    <p class="tshirt-details"><strong>Price:</strong> ${{ tshirt.price }}</p>
+    <p class="tshirt-details"><strong>Price:</strong> £{{ tshirt.price }}</p>
   </div>
 
   <form method="post" action="">
