@@ -2,6 +2,7 @@
 from django.db import models
 import uuid
 
+# tshirt model, allow for a list of tshirts and their details
 class TShirt(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="tshirts", blank=True, null=True)
@@ -11,6 +12,7 @@ class TShirt(models.Model):
     def __str__(self):
         return self.name
 
+# Order model, allows us to put in the information provided by the user 
 class Order(models.Model):
     order_number = models.CharField(max_length=20, unique=True)
     product = models.ForeignKey(TShirt, on_delete=models.CASCADE)
