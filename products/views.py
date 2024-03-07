@@ -39,5 +39,8 @@ def latest_orders(request):
     # Fetch the latest 50 orders with related TShirt
     latest_orders = Order.objects.order_by('-id')[:50].select_related('product')  
     # Access the object of the Customer model
-    #cust_fields = Customer
-    return render(request, 'latest_orders.html', {'latest_orders': latest_orders})
+    customer_objs = Customer.objects.all()
+    j = customer_objs.get(email="test@test.com").total_orders
+    print('CUSTOMER OBJECTS HERE')
+    print(j)
+    return render(request, 'latest_orders.html', {'latest_orders': latest_orders, 'customer_objs': customer_objs})
