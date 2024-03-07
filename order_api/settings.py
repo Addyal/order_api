@@ -74,7 +74,8 @@ WSGI_APPLICATION = 'order_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# For the sake of this project simply using sqlite3 as built in and easy to use 
+# obviously there are issues etc but thought best to stick with this for east etc.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
