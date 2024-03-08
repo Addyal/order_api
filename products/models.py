@@ -1,10 +1,11 @@
 #imports
 from django.db import models
+from django.core.validators import validate_email
 import uuid
 
 # Customer master list, for now we only need to store email and total number of orders associated with this email account
 class Customer(models.Model):
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, primary_key=True )
     total_orders = models.PositiveIntegerField(default=0)
 
     def __str__(self):
@@ -13,6 +14,7 @@ class Customer(models.Model):
 
 # tshirt model, allow for a list of tshirts and their details
 class TShirt(models.Model):
+    product_id = models.CharField(max_length=20, unique=True, null=False)
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="tshirts", blank=True, null=True)
     colour = models.CharField(max_length=10, blank='See Image')
@@ -22,12 +24,14 @@ class TShirt(models.Model):
     def __str__(self):
         return self.name
 
+
 # Order model, allows us to put in the information provided by the user 
 class Order(models.Model):
     order_number = models.CharField(max_length=20, unique=True)
     product = models.ForeignKey(TShirt, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    # Improve email validation 
+    email = models.EmailField(validators=[validate_email])
     address1 = models.CharField(max_length=255)
     address2 = models.CharField(max_length=255, blank=True)
     town_city = models.CharField(max_length=100)
